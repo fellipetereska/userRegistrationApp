@@ -59,5 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Preencha os campos obrigatórios!", Toast.LENGTH_SHORT).show();
             }
         });
+
+        buttonReport.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ReportActivity.class)));
+
     }
 }
