@@ -37,13 +37,27 @@ public class MainActivity extends AppCompatActivity {
 
         // Configura o botao de salvar
         buttonSave.setOnClickListener(v -> {
-            Log.d("MainActivity", "Botão Cadastrar Usuário clicado");
+            Log.i("MainActivity", "Botão Cadastrar Usuário clicado!");
 
             // Coleta os dados do front
-            string name = editTextName.getText().toString();
-            string cpf = editTextCPF.getText().toString();
-            string email = editTextEmail.getText().toString();
-            string phone = editTextPhone.getText().toString();
+            String name = editTextName.getText().toString();
+            String cpf = editTextCPF.getText().toString();
+            String email = editTextEmail.getText().toString();
+            String phone = editTextPhone.getText().toString();
+
+            Log.d("MainActivity", "Nome: " + name + "CPF: " + cpf + "Email: " + email + "Phone: " + phone);
+
+            if (!name.isEmpty() && cpf.isEmpty()) {
+                User user = new User(name, cpf, email, phone);
+
+                UserDao.Insert(user);
+                Log.d("MainActivity", "Usuário gravado com sucesso!");
+
+                Toast.makeText(MainActivity.this, "Usuário cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+            } else {
+                Log.d("MainActivity", "Erro: Campos obrigatórios vazios!");
+                Toast.makeText(MainActivity.this, "Preencha os campos obrigatórios!", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }
